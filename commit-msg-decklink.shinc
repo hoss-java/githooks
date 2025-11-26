@@ -1,0 +1,42 @@
+#
+# File name : commit-msg-decklink.shinc
+# Used by commit-msg
+#
+# Description :
+# -----------------------------------------------------
+# Create a link to the deck card and to .git/COMMIT_EDITMSG
+#  as a part of the commit msg
+#
+# The script is developed to run from commit-msg as a git hook.
+#
+#
+# 2025 hossjava@osxx.com
+
+deckAddr=https://github.com/hoss-java/lessons/blob/main/DECK.md
+
+# Add Deck card link to the message description
+commentStr=$(eval echo "$msgline" | sed "s/.*]//")
+deckIdBlock=$(eval echo "$msgline" | sed "s/$commentStr//g")
+deckIdStr=$(eval echo "$deckIdBlock" | sed -e 's/^.//' -e 's/.$//')
+
+deckCardId=$(eval echo "$deckIdStr" | sed "s/.*-//")
+deckWeekId=$(eval echo "$deckIdStr" | sed "s/$deckCardId//g")
+
+
+deckCardId=$(eval echo "$deckCardId" | sed -e 's/^.//')
+deckWeekId=$(eval echo "$deckBoardId" | sed -e 's/^.//' -e 's/.$//')
+
+deckLink="deckAddr#$deckWeekId-$deckCardId"
+
+echo "Deck reference: $deckLink"
+
+if ! git -c trailer.ifexists=doNothing interpret-trailers \
+      --trailer "Deck-Link: $deckLink" < "$1" > "${dest}" ; then
+  echo "cannot insert deck-link line in $1"
+  exit 1
+fi
+
+if ! mv "${dest}" "$1" ; then
+  echo "cannot mv ${dest} to $1"
+  exit 1
+fi

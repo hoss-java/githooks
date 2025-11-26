@@ -1,0 +1,13 @@
+#!/bin/sh
+SCRIPT_PATH=$(dirname `which $0`)
+CONF_LOCALPATH=${SCRIPT_PATH}/../../.commit-check
+CONF_PATH=${SCRIPT_PATH}/.commit-check
+
+exitcode=0
+
+if [ -f "$CONF_LOCALPATH" ]; then
+	. ${CONF_LOCALPATH}
+else
+	echo "No check has been defined!"
+fi
+exit $exitcode

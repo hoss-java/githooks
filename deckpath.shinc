@@ -1,0 +1,14 @@
+#
+# File name : deckpath.shinc
+# Used by commit-msg
+#
+# Description :
+# -----------------------------------------------------
+# Define the deck file path
+#
+# The script is developed to run from commit-msg as a git hook.
+#
+#
+# 2025 hossjava@osxx.com
+
+deckAddr=https://github.com/hoss-java/lessons/blob/main/DECK.md

@@ -1,0 +1,21 @@
+#
+# File name : commit-msg-format.shinc
+# Used by commit-msg
+#
+# Description :
+# -----------------------------------------------------
+# Check commit message sent by git to be sure the messages
+#    contains deck card info
+#
+# The script is developed to run from commit-msg as a git hook.
+#
+#
+# 2025 hossjava@osxx.com
+
+msgpattern='['[wW]*[0-9]-[cC]*[0-9]']'*
+case $msgline in
+  $msgpattern) ;;
+  *)
+	echo "A message should be start with a pattern like [W<week-number>-C<card-number>]"
+  	exit 1;;
+esac
