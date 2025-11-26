@@ -74,3 +74,4 @@ This repository contains 6 files and a readme and a DECK sample file
 >>.
 >>```
 6 . Use `DECK.md.sample` as a sample for `DECK.md`
+7. To access to the link added by git hooks script, under commit destcription (click on the three dots `...` in the right site of the commit title) looks for `Deck-Link`)
