@@ -31,7 +31,7 @@ gantt
     SD2 - Update the repo itself with deck              :done,md1des2, after md1des1,1d
 
     section MD2
-    SD1 - Fix issues - Links                     :md2des1, 2025-11-30,1d
+    SD1 - Fix issues - Links                     :md2des1, 2025-11-26,1d
 
 ```
 
@@ -74,12 +74,13 @@ It seems the link created by hooks does not work. The goal of this card is to fi
 Links created by git hook scripts work
 
 ### TODO :
-- [] 1. Find wath the issue is
-- [] 2. Fix it
-- [] 3. Document findings
+- [x] 1. Find wath the issue is
+- [x] 2. Fix it
+- [x] 3. Document findings
+- [] 4. Update time plan
 
 ### Reports :
-* 
+* The problem was on variable definations
 
 ### Steps to test and debugging:
 - [] 1.

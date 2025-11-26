@@ -12,7 +12,6 @@
 #
 # 2025 hossjava@osxx.com
 
-deckAddr=https://github.com/hoss-java/lessons/blob/main/DECK.md
 
 # Add Deck card link to the message description
 commentStr=$(eval echo "$msgline" | sed "s/.*]//")
@@ -24,9 +23,9 @@ deckWeekId=$(eval echo "$deckIdStr" | sed "s/$deckCardId//g")
 
 
 deckCardId=$(eval echo "$deckCardId" | sed -e 's/^.//')
-deckWeekId=$(eval echo "$deckBoardId" | sed -e 's/^.//' -e 's/.$//')
+deckWeekId=$(eval echo "$deckWeekId" | sed -e 's/^.//' -e 's/.$//')
 
-deckLink="deckAddr#$deckWeekId-$deckCardId"
+deckLink="$deckAddr#$deckWeekId-$deckCardId"
 
 echo "Deck reference: $deckLink"
 

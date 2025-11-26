@@ -21,6 +21,6 @@ deckWeekId=$(eval echo "$deckIdStr" | sed "s/$deckCardId//g")
 
 
 deckCardId=$(eval echo "$deckCardId" | sed -e 's/^.//')
-deckWeekId=$(eval echo "$deckBoardId" | sed -e 's/^.//' -e 's/.$//')
+deckWeekId=$(eval echo "$deckWeekId" | sed -e 's/^.//' -e 's/.$//')
 
 echo "$deckAddr#$deckWeekId-$deckCardId"
