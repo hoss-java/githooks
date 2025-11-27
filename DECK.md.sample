@@ -61,24 +61,75 @@ gantt
 # Stories/cards MD1
 
 ## 48-001
+### DONE ![status](https://img.shields.io/badge/status-DONE-brightgreen)
+<details>
+    <summary>Details</summary>
 
-### Goal : <card-title/commit message>
-Explain final goal for this card
+> Explain final goal for this card
+> 
+> ### DOD  (definition of done):
+> What will happen after finishing this card
+> 
+> ### TODO :
+> - [] 1.
+> 
+> ### Reports :
+> * 
+> 
+> ### Steps to test and debugging:
+> - [] 1.
+> 
+> ### References :
+> * []()
+</details>
 
-### DOD  (definition of done):
-What will happen after finishing this card
 
-### TODO :
-- [] 1.
+## 48-002
+### ONGOING ![status](https://img.shields.io/badge/status-ONGOING-yellow)
+<details>
+    <summary>Details</summary>
 
-### Reports :
-* 
+> Explain final goal for this card
+> 
+> ### DOD  (definition of done):
+> What will happen after finishing this card
+> 
+> ### TODO :
+> - [] 1.
+> 
+> ### Reports :
+> * 
+> 
+> ### Steps to test and debugging:
+> - [] 1.
+> 
+> ### References :
+> * []()
+</details>
 
-### Steps to test and debugging:
-- [] 1.
 
-### References :
-* []()
+## 48-003
+### NOT--STARTED ![status](https://img.shields.io/badge/status-NOT--STARTED-lightgrey)
+<details>
+    <summary>Details</summary>
+
+> Explain final goal for this card
+> 
+> ### DOD  (definition of done):
+> What will happen after finishing this card
+> 
+> ### TODO :
+> - [] 1.
+> 
+> ### Reports :
+> * 
+> 
+> ### Steps to test and debugging:
+> - [] 1.
+> 
+> ### References :
+> * []()
+</details>
 
 
 # Stories/cards MD2
