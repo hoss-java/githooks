@@ -120,26 +120,3 @@ gantt
 >### References :
 >* []()
 </details>
-
-## 48-005
-### Goal : update README ![status](https://img.shields.io/badge/status-DONE-brightgreen)
-<details>
-    <summary>Details</summary>
-
->>The goal of this card is to update README.
->>
->>### DOD  (definition of done):
->>README is updated.
->>
->>### TODO :
->>- [x] 1. README is updated with a linke to this file DECK
->>
->>### Reports :
->>*
->>
->>### Steps to test and debugging:
->>- [] 1.
->>
->>### References :
->>* []()
-</details>
