@@ -29,8 +29,13 @@ gantt
     section MD1
     SD1 - Git hooks scripts              :done,md1des1, 2025-11-24,2d
     SD2 - Update the repo itself with deck              :done,md1des2, after md1des1,1d
+```
 
-    section MD2
+## Maintenance timeplan
+
+```mermaid
+gantt
+    section MD1
     SD1 - Fix issues - Links                     :done,md2des1, 2025-11-26,1d
 
 ```
@@ -38,74 +43,71 @@ gantt
 # Stories/cards MD1 - Develop
 
 ## 48-002
+>### Goal : Add hooks
+>The goal of this card is to update the local repo itself with hooks.
+>It also aims to add a deck file to the repo
+>
+>### DOD  (definition of done):
+>Hooks files are added to the local repo.
+>A Deck file is created for the progect
+>
+>### TODO :
+>- [x] 1. Add git hooks' scripts
+>- [x] 2. Updated Deck path
+>- [x] 3. Add a deck file to the repo
+>- [x] 4. Update time plan
+>
+>### Reports :
+>* 
+>
+>### Steps to test and debugging:
+>- [] 1.
+>
+>### References :
+>* []()
+---
 
-### Goal : 
-The goal of this card is to update the local repo itself with hooks.
-It also aims to add a deck file to the repo
-
-### DOD  (definition of done):
-Hooks files are added to the local repo.
-A Deck file is created for the progect
-
-### TODO :
-- [x] 1. Add git hooks' scripts
-- [x] 2. Updated Deck path
-- [x] 3. Add a deck file to the repo
-- [x] 4. Update time plan
-
-### Reports :
-* 
-
-### Steps to test and debugging:
-- [] 1.
-
-### References :
-* []()
-
-
-# Stories/cards MD2 - Maintenance
+# Stories/cards MD1 - Maintenance
 
 ## 48-003
-
-### Goal : 
-It seems the link created by hooks does not work. The goal of this card is to find the problem and fix it.
-
-### DOD  (definition of done):
-Links created by git hook scripts work
-
-### TODO :
-- [x] 1. Find wath the issue is
-- [x] 2. Fix it
-- [x] 3. Document findings
-- [x] 4. Update time plan
-
-### Reports :
-* The problem was on variable definations
-
-### Steps to test and debugging:
-- [] 1.
-
-### References :
-* []()
+>### Goal : Fix links issues
+>It seems the link created by hooks does not work. The goal of this card is to find the problem and fix it.
+>
+>### DOD  (definition of done):
+>Links created by git hook scripts work
+>
+>### TODO :
+>- [x] 1. Find wath the issue is
+>- [x] 2. Fix it
+>- [x] 3. Document findings
+>- [x] 4. Update time plan
+>
+>### Reports :
+>* The problem was on variable definations
+>
+>### Steps to test and debugging:
+>- [] 1.
+>
+>### References :
+>* []()
 ---
 
 ## 48-004
-
-### Goal : 
-The goal of this card is to update README.
-
-### DOD  (definition of done):
-README is updated.
-
-### TODO :
-- [x] 1. README is updated with a linke to this file DECK
-
-### Reports :
-*
-
-### Steps to test and debugging:
-- [] 1.
-
-### References :
-* []()
+>### Goal : update README
+>The goal of this card is to update README.
+>
+>### DOD  (definition of done):
+>README is updated.
+>
+>### TODO :
+>- [x] 1. README is updated with a linke to this file DECK
+>
+>### Reports :
+>*
+>
+>### Steps to test and debugging:
+>- [] 1.
+>
+>### References :
+>* []()
 ---
