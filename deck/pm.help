@@ -1,0 +1,15 @@
+## Git Deck Init Help
+
+The `git deck init` command is used to initialize a deck for your project or to display help information.
+
+### Commands:
+
+- `git deck init`: 
+  Initializes the deck by creating the `.pm/deck` directory if it does not already exist. 
+  If the deck is already initialized, a message will inform you of its existence.
+
+- `git deck init help`: 
+  Displays this help information, providing guidance on how to use the `init` command.
+
+### Usage Notes:
+- Ensure you run this command from the root of your Git repository to correctly initialize the deck.

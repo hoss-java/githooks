@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Initialize an array to hold command names.
+commands=()
+
+# Include all .shinc files from the current directory and collect commands.
+for file in "$(dirname "$0")"/*.shinc; do
+    [ -e "$file" ] || continue  # Skip if no .shinc files exist
+    . "$file"
+
+    # Extract the base name of the file and add it to the commands array
+    command_name=$(basename "$file" .shinc)
+    commands+=("$command_name")
+done
+
+# Print help information for deck commands.
+print_help() {
+    echo "Usage: git deck {${commands[*]}|help}"
+}
+
+# Main entry point for the deck command.
+command_found=false  # Flag to track if command is found
+case "$1" in
+    *)
+        for cmd in "${commands[@]}"; do
+            if [[ "$1" == "$cmd" ]]; then
+                command_found=true
+                "$1" "${@:2}"  # Call the corresponding function
+                break
+            fi
+        done
+
+        if ! $command_found; then
+            echo "Invalid command: $1"  # Show invalid command
+            print_help
+        fi
+        ;;
+esac

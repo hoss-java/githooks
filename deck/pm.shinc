@@ -1,0 +1,43 @@
+# Initialize the deck or provide help.
+# This function initializes the .pm/deck directory or prints help if requested.
+pm() {
+    # Get the Git root directory
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    PM_HELP="$GIT_ROOT/.git/hooks/deck/pm.help"
+    DECK_DIR="$GIT_ROOT/.pm/deck"
+
+    case "$1" in
+        help)
+            # Check if the help file exists and print its content
+            if [ -f "$PM_HELP" ]; then
+                cat "$PM_HELP"
+            else
+                echo "Error: Help file init.help not found."
+            fi
+            ;;
+        initdeck)
+            initdeck "${@:2}"
+            ;;
+        updatedeck)
+            updatedeck "${@:2}"
+            ;;
+    esac
+}
+
+# Initialize deck for a git folder
+initdeck() {
+    return_value=1
+    if [ -d "$DECK_DIR" ]; then
+        echo "Deck is already initialized at $DECK_DIR."
+    else
+        mkdir -p "$DECK_DIR"
+        echo "Initialized deck at $DECK_DIR."
+        return_value=0
+    fi
+    return $return_value
+}
+
+# 
+updatedeck() {
+    ;
+}
