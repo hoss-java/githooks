@@ -1,0 +1,22 @@
+name: Generate DECK.md
+
+on:
+  push:
+    paths:
+      - '.pm/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Bash
+        shell: bash
+
+      - name: Run Script
+        run: |
+          chmod +x .github/gh_generate_markdown.sh
+          ./.github/gh_generate_markdown.sh
