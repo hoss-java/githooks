@@ -7,13 +7,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Indentation is crucial here
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-        with:  
-          fetch-depth: 0         
+        uses: actions/checkout@v2
 
       - name: Make script executable
         run: chmod +x .github/gh_generate_markdown.sh
@@ -22,7 +20,7 @@ jobs:
         run: ./.github/gh_generate_markdown.sh
         shell: bash
 
-     - name: Commit and push changes to master  
+      - name: Commit and push changes to master  
         env:  
           PAT: ${{ secrets.PAT }}  # GitHub PAT stored in repository secrets  
           REPO: ${{ hoss-java/githooks }}  # e.g., "username/repo-name"  
