@@ -113,4 +113,6 @@ for board_folder in "$base_path"/*; do
         done
     fi
 done
+cat "$output_file"
+echo "hiuuuuu"
 set +x
