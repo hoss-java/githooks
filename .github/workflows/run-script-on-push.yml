@@ -39,7 +39,3 @@ jobs:
           git push https://hoss-java:${{ secrets.PAT }}@github.com/hoss-java/githooks.git HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-
-
-remote: Permission to user/repo.git denied to github-actions[bot].
-fatal: unable to access 'https://github.com/user/repo.git/': The requested URL returned error: 403
