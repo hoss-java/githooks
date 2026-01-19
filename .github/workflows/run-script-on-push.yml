@@ -22,7 +22,7 @@ jobs:
       # Step 2: Create or modify a file
       - name: Create a new file
         run: |
-          echo "This is a new file created by GitHub Actions." > myfile.txt
+          echo "This is a new file created by GitHub Actions." > myfile2.txt
 
       # Step 3: Configure Git
       - name: Configure git
@@ -36,6 +36,3 @@ jobs:
           git add myfile.txt
           git commit -m "Add myfile.txt created by GitHub Actions"
           git push origin main # Change to the branch you want to push to
-          #git push https://hoss-java:${{ secrets.PAT }}@github.com/hoss-java/githooks.git HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
