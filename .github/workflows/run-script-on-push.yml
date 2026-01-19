@@ -22,6 +22,7 @@ jobs:
       # Step 2: Setup bash
       - name: Set up Bash
         shell: bash
+        run: echo "Bash is set up" # This line ensures `run` is present
 
       # Step 3: Run the script
       - name: Run Script
