@@ -30,3 +30,8 @@ jobs:
           git add DECK.md
           git commit -m "Update DECK.md"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/hoss-java/githooks.git HEAD:<branch-name>
+
+      - name: Test GitHub Token
+        run: |
+          git fetch origin
+          echo "Token works!"
