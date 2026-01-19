@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 GIT_ROOT="$(git rev-parse --show-toplevel)"
 base_path="$GIT_ROOT/.pm/deck"
 output_file="$GIT_ROOT/DECK.md"  # Change output file to DECK.md in root
@@ -112,3 +113,4 @@ for board_folder in "$base_path"/*; do
         done
     fi
 done
+set +x
