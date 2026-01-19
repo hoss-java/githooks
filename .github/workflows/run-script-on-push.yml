@@ -11,8 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        
+        uses: actions/checkout@v4
+        with:  
+          fetch-depth: 0         
+
       - name: Make script executable
         run: chmod +x .github/gh_generate_markdown.sh
 
