@@ -23,7 +23,7 @@ jobs:
      - name: Commit and push changes to master  
         env:  
           PAT: ${{ secrets.PAT }}  # GitHub PAT stored in repository secrets  
-          REPO: ${{ github.repository }}  # e.g., "username/repo-name"  
+          REPO: ${{ hoss-java/githooks }}  # e.g., "username/repo-name"  
         run: |
           # Configure Git user (required for commits)  
           git config --global user.name "GitHub Actions Bot"  
