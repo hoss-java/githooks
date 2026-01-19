@@ -22,7 +22,7 @@ jobs:
       # Step 2: Create or modify a file
       - name: Create a new file
         run: |
-          echo "This is a new file created by GitHub Actions." > myfile2.txt
+          echo "This is a new file created by GitHub Actions. sadsad" > myfile2.txt
 
       # Step 3: Configure Git
       - name: Configure git
@@ -33,6 +33,6 @@ jobs:
       # Step 4: Commit and push the changes
       - name: Commit changes
         run: |
-          git add myfile.txt
+          git add myfile2.txt
           git commit -m "Add myfile.txt created by GitHub Actions"
           git push origin main # Change to the branch you want to push to
