@@ -52,9 +52,16 @@ create_board() {
     local board_name="$1"
     local response
     response=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
+                    -H "Accept: application/vnd.github.v3+json" \
                     -d "{\"name\": \"${board_name}\", \"body\": \"Project board for ${board_name}\"}" \
                     "https://api.github.com/repos/${GITHUB_REPO}/projects")
-    echo "$response"
+
+    # Check for errors and print a message according to the response
+    if echo "$response" | jq -e '.message' > /dev/null; then
+        echo "Error: $(echo "$response" | jq .message)"
+    else
+        echo "Success: Created project board: $(echo "$response" | jq .name)"
+    fi
 }
 
 # Function to create a column in a board
