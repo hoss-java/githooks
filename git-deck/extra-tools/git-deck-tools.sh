@@ -50,9 +50,6 @@ collect_options() {
 # Function to create a project board
 create_board() {
 set -x
-    echo "Using repository: $GITHUB_REPO"
-    echo "Using GITHUB_TOKEN: ${GITHUB_TOKEN}"  # Optional: To see if it's set
-
     local board_name="$1"
     local response
     response=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -219,6 +216,8 @@ generate_markdown() {
 update_gh_projects() {
     return_value=0
 
+    echo "Using repository: $GITHUB_REPO"
+    echo "Using GITHUB_TOKEN: ${GITHUB_TOKEN}"  # Optional: To see if it's set
     # Loop through each board
     for board in $DECK_BASE_DIRECTORY/*; do
         board_name=$(basename "$board")
