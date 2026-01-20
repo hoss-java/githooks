@@ -24,7 +24,7 @@ jobs:
       # Step 4: Run the script
       - name: Run Script
         env:
-          GITHUB_TOKEN: ${{ secrets.TAP }}  # Reference your secret token here
+          GITHUB_TOKEN: ${{ secrets.PAT }}  # Reference your secret token here
         run: |
           echo "Using repository: $GITHUB_REPO"  # Check if this prints right
           echo "Using GITHUB_TOKEN: ${GITHUB_TOKEN}"  # Avoid printing sensitive methods
