@@ -215,7 +215,6 @@ update_gh_projects() {
     # Loop through each board
     for board in $DECK_BASE_DIRECTORY/*; do
         board_name=$(basename "$board")
-        echo "$board_name"
         
         # Create the board in GitHub
         board_response=$(create_board "$board_name")
@@ -236,10 +235,12 @@ update_gh_projects() {
             # Create the column in GitHub
             column_response=$(create_column "$board_id" "$column_name")
             column_id=$(echo "$column_response" | jq -r '.id')
+            echo "Created column: $column_name (ID: $column_id)"
             
             # Loop through each card in the column
             for card in "$column"*; do
-                if [[ $(basename "$card") =~ ^[0-9]{1,4}$ ]]; then
+                card_name=$(basename "$card")
+                if [[ "$card_name" =~ ^[0-9]{1,4}$ ]]; then
                     if [[ -f "$card" ]]; then
                         card_headers=$(extract_card_headers "$card")
                         eval "$card_headers"  # Evaluate to create the associative array
@@ -256,7 +257,8 @@ update_gh_projects() {
 
                         # Create the card in GitHub
                         card_response=$(create_card "$column_id" "$title" "$body")
-                        echo "$card_response"
+                        card_id=$(echo "$card_response" | jq -r '.id')
+                        echo "Created board: $card_name (ID: $card_id)"
                     fi
                 fi
             done
