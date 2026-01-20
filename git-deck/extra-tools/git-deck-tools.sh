@@ -219,12 +219,11 @@ update_gh_projects() {
         board_name=$(basename "$board")
         
         # Create the board in GitHub
-        board_response=$(create_board "$board_name")
-        
+        board_response=$(create_board "$board_name")    
         if [[ $(echo "$board_response" | jq -r '.id') == "null" ]]; then
             echo "Failed to create board: $board_name"
             echo "$board_response"
-            continue
+            return 1
         fi
         
         board_id=$(echo "$board_response" | jq -r '.id')
@@ -236,6 +235,12 @@ update_gh_projects() {
         
             # Create the column in GitHub
             column_response=$(create_column "$board_id" "$column_name")
+            if [[ $(echo "$column_response" | jq -r '.id') == "null" ]]; then
+                echo "Failed to create board: $column_name"
+                echo "$column_response"
+                return 1
+            fi
+
             column_id=$(echo "$column_response" | jq -r '.id')
             echo "Created column: $column_name (ID: $column_id)"
             
@@ -259,6 +264,11 @@ update_gh_projects() {
 
                         # Create the card in GitHub
                         card_response=$(create_card "$column_id" "$title" "$body")
+                        if [[ $(echo "$card_response" | jq -r '.id') == "null" ]]; then
+                            echo "Failed to create board: $column_name"
+                            echo "$card_response"
+                            return 1
+                        fi
                         card_id=$(echo "$card_response" | jq -r '.id')
                         echo "Created board: $card_name (ID: $card_id)"
                     fi
@@ -278,9 +288,11 @@ collect_options "${@}"
 case "$command" in
     generate-markdown)
             generate_markdown "${@}"
+            return $?
         ;;
     update-gh-projects)
             update_gh_projects "${@}"
+            return $?
         ;;
     *)
         echo "Invalid card command. Usage: $(basename $0) {generate-markdown|update-gh-projects}"
