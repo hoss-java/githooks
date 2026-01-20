@@ -26,7 +26,7 @@ gantt
 # 1 - git-deck
 
 ## 001-0001
-> Fix github yaml issues DONE
+> **Fix github yaml issues** ![status](https://img.shields.io/badge/status-DONE-brightgreen)
 > <details >
 >     <summary>Details</summary>
 > 
@@ -43,7 +43,7 @@ gantt
 > </details>
 
 ## 001-0002
-> Update git-hooks to check titles with cards NOT-STARTED
+> **Update git-hooks to check titles with cards** ![status](https://img.shields.io/badge/status-NOT--STARTED-lightgrey)
 > <details >
 >     <summary>Details</summary>
 > 
