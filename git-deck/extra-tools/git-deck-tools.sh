@@ -49,6 +49,7 @@ collect_options() {
 
 # Function to create a project board
 create_board() {
+set -x
     local board_name="$1"
     local response
     response=$(curl -s -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
@@ -57,6 +58,7 @@ create_board() {
                     "https://api.github.com/repos/${GITHUB_REPO}/projects")
 
     echo "$response"
+set +x
 }
 
 # Function to create a column in a board
