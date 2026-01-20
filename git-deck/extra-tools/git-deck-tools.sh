@@ -214,8 +214,7 @@ update_gh_projects() {
 
     # Loop through each board
     for board in $DECK_BASE_DIRECTORY/*; do
-        echo "---board"
-        board_name=${board%/}  # Remove trailing slash
+        board_name=$(basename "$board")
         echo "$board_name"
         
         # Create the board in GitHub
@@ -227,13 +226,12 @@ update_gh_projects() {
             continue
         fi
         
-        ##board_id=$(echo "$board_response" | jq -r '.id')
-        ##echo "Created board: $board_name (ID: $board_id)"
+        board_id=$(echo "$board_response" | jq -r '.id')
+        echo "Created board: $board_name (ID: $board_id)"
 
         # Loop through each column in the board
         for column in "$board"*/; do
-            column_name=${column%/}  # Remove trailing slash
-            column_name=${column_name##*/}  # Get only the column name
+            column_name=$(basename "$column")
         
             # Create the column in GitHub
             column_response=$(create_column "$board_id" "$column_name")
