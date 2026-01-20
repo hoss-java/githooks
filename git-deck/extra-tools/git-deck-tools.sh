@@ -56,12 +56,7 @@ create_board() {
                     -d "{\"name\": \"${board_name}\", \"body\": \"Project board for ${board_name}\"}" \
                     "https://api.github.com/repos/${GITHUB_REPO}/projects")
 
-    # Check for errors and print a message according to the response
-    if echo "$response" | jq -e '.message' > /dev/null; then
-        echo "Error: $(echo "$response" | jq .message)"
-    else
-        echo "Success: Created project board: $(echo "$response" | jq .name)"
-    fi
+    echo "$response"
 }
 
 # Function to create a column in a board
