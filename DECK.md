@@ -83,10 +83,10 @@ gantt
 > * All files are pushed.
 > 
 > # TODO:
-> - [] 1. Remove sync part from git-deck-tools.sh
-> - [] 2. Update YAML files and remove sync to gh boards parts
+> - [x] 1. Remove sync part from git-deck-tools.sh
+> - [x] 2. Update YAML files and remove sync to gh boards parts
 > - [] 3. Remove test tokens from github
-> - [] 4. Test the main Github action to create DECK.md works fine
+> - [x] 4. Test the main Github action to create DECK.md works fine
 > 
 > # Reports:
 > *
