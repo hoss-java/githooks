@@ -42,23 +42,9 @@ gantt
 > * There is no accress to remote via virtual machin that github runs
 > </details>
 
-## 001-0002
-> **Update git-hooks to check titles with cards** ![status](https://img.shields.io/badge/status-NOT--STARTED-lightgrey)
-> <details >
->     <summary>Details</summary>
-> 
-> # DOD (definition of done):
-> 
-> # TODO:
-> - [] 1.
-> 
-> # Reports:
-> *
-> </details>
-
 ## 001-0003
-> **Work around Github api.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
-> <details open>
+> **Work around Github api.** ![status](https://img.shields.io/badge/status-DONE-brightgreen)
+> <details >
 >     <summary>Details</summary>
 > 
 > # DOD (definition of done):
@@ -71,4 +57,18 @@ gantt
 > 
 > # Reports:
 > * All findings was written done in a file named `github_api_spike.md`
+> </details>
+
+## 001-0002
+> **Update git-hooks to check titles with cards** ![status](https://img.shields.io/badge/status-NOT--STARTED-lightgrey)
+> <details >
+>     <summary>Details</summary>
+> 
+> # DOD (definition of done):
+> 
+> # TODO:
+> - [] 1.
+> 
+> # Reports:
+> *
 > </details>
