@@ -5,6 +5,13 @@ The **Git-Deck** is a powerful tool designed to manage your Kanban boards direct
 ## Purpose
 The Git-Deck allows you to perform various operations related to Kanban boards, making it easier to track tasks and manage projects efficiently. 
 
+## Register git-deck
+Before starting to use the deck command, it needs to be registered as a Git command.
+
+```bash
+git config alias.deck '!bash .git/hooks/git-deck/deck'
+```
+
 ## Commands Overview
 
 ### Board Commands
