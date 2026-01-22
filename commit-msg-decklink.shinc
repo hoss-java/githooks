@@ -11,31 +11,61 @@
 #
 #
 # 2025 hossjava@osxx.com
+# Replace function using `sed` to replace all variables dynamically
+replace_variables() {
+    local result="$1"
+    local vars="$2"    
 
+    # Loop through the config_variables
+    for pair in $vars; do
+        # Capture key and value alternately
+        if [ -n "$key" ]; then
+            value="$pair"
+            # Replace the key with the value in the result
+            result=$(echo "$result" | sed "s|$key|$value|g")
+            key=""
+        else
+            key="$pair"
+        fi
+    done
+
+    echo "$result"
+}
 
 # Add Deck card link to the message description
-commentStr=$(eval echo "$msgline" | sed "s/.*]//")
-deckIdBlock=$(eval echo "$msgline" | sed "s/$commentStr//g")
+commentStr=$(eval echo "$msgline1" | sed "s/.*]//")
+deckIdBlock=$(eval echo "$msgline1" | sed "s/$commentStr//g")
 deckIdStr=$(eval echo "$deckIdBlock" | sed -e 's/^.//' -e 's/.$//')
 
-deckCardId=$(eval echo "$deckIdStr" | sed "s/.*-//")
-deckWeekId=$(eval echo "$deckIdStr" | sed "s/$deckCardId//g")
+if [ -n "$deckIdBlock" ] && [ -n "$deckIdStr" ]; then
+    deckCardId=$(eval echo "$deckIdStr" | sed "s/.*-//")
+    deckBoardId=$(eval echo "$deckIdStr" | sed "s/$deckCardId//g")
 
-
-deckCardId=$(eval echo "$deckCardId" | sed -e 's/^.//')
-deckWeekId=$(eval echo "$deckWeekId" | sed -e 's/^.//' -e 's/.$//')
-
-deckLink="$deckAddr#$deckWeekId-$deckCardId"
-
-echo "Deck reference: $deckLink"
-
-if ! git -c trailer.ifexists=doNothing interpret-trailers \
-      --trailer "Deck-Link: $deckLink" < "$1" > "${dest}" ; then
-  echo "cannot insert deck-link line in $1"
-  exit 1
+    deckCardId=$(eval echo "$deckCardId" | sed -e 's/^.//')
+    deckBoardId=$(eval echo "$deckBoardId" | sed -e 's/^.//' -e 's/.$//')
 fi
 
-if ! mv "${dest}" "$1" ; then
-  echo "cannot mv ${dest} to $1"
-  exit 1
+# Update deckLinkAddr if it has been defined
+if [ -n "$deckLinkAddr" ] && [ "$deckLinkFlag" = true ]; then
+    if [ -n "$deckBoardId" ] || [ -n "$deckCardId" ]; then
+        config_variables=" \
+            %CARDID% $deckCardId \
+            %BOARDID% $deckBoardId"
+
+        deckLinkAddr=$(replace_variables "$deckLinkAddr" "$config_variables")
+        echo "Deck reference: $deckLinkAddr"
+        if ! git -c trailer.ifexists=doNothing interpret-trailers \
+              --trailer "Deck-Link: $deckLinkAddr" < "$1" > "${dest}" ; then
+            echo "cannot insert deck-link line in $1"
+            exit 1
+        fi
+        if ! mv "${dest}" "$1" ; then
+            echo "cannot mv ${dest} to $1"
+            exit 1
+        fi
+    else
+        echo "Invalid boardId or cardId."
+        echo "$messagePatternErrMsg"
+        exit 1
+    fi
 fi
