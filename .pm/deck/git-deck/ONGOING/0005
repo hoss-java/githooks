@@ -1,0 +1,24 @@
+---
+Title: Connect git-deck and git hooks message.
+Tags: git-deck
+---
+The goal of this card is to improve gut-deck integrations with git.
+
+# DOD (definition of done):
+Git message hook check cards before commit.
+Auto complatations suggest git messages based on ONGOING card.
+A new option to ignore message format is added to git hooks.
+All findings are documented
+
+# TODO:
+- [] 1. Add check cards' ID to git message hooks
+- [] 2. Add option to skip commit message format
+- [] 3. Auto-complet for commit messages
+- [] 4. Auto add git-deck changes
+- [] 5. Add auto-tag
+- [] 6. Add other items to header (creator, user, date, start-time, done-time...)
+- [] 7. Auto timetracker
+- [] 8. Plan to make it possible to use as Scrum board
+
+# Reports:
+*
