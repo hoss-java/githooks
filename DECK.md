@@ -92,20 +92,27 @@ gantt
 > *
 > </details>
 
-## 001-0004
-> **Update git-deck-tools and clean up not used files.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
+## 001-0005
+> **Connect git-deck and git hooks message.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
 > <details open>
 >     <summary>Details</summary>
-> The goal of this card is to clean up scripts and YAML files,
+> The goal of this card is to improve gut-deck integrations with git.
 > 
 > # DOD (definition of done):
-> * All files are pushed.
+> Git message hook check cards before commit.
+> Auto complatations suggest git messages based on ONGOING card.
+> A new option to ignore message format is added to git hooks.
+> All findings are documented
 > 
 > # TODO:
-> - [x] 1. Remove sync part from git-deck-tools.sh
-> - [x] 2. Update YAML files and remove sync to gh boards parts
-> - [] 3. Remove test tokens from github
-> - [x] 4. Test the main Github action to create DECK.md works fine
+> - [] 1. Add check cards' ID to git message hooks
+> - [] 2. Add option to skip commit message format
+> - [] 3. Auto-complet for commit messages
+> - [] 4. Auto add git-deck changes
+> - [] 5. Add auto-tag
+> - [] 6. Add other items to header (creator, user, date, start-time, done-time...)
+> - [] 7. Auto timetracker
+> - [] 8. Plan to make it possible to use as Scrum board
 > 
 > # Reports:
 > *
