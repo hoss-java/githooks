@@ -13,7 +13,7 @@ target_git_root_dir="$(git rev-parse --show-toplevel)"
 target_git_hooks_dir="$target_git_root_dir/.git/hooks"
 source_git_hooks_dir="$script_dir/hooks"
 source_git_default_file="$script_dir/hooks/.gitdefault"
-source_completion_script="$script_dir/hooks/git-deck/extra-tools/git-deck-completion.sh"
+source_completion_script="$script_dir/extra-tools/git-deck-completion.sh"
 target_user_home="$HOME"
 
 echo "Source folder :$script_dir"
@@ -41,6 +41,8 @@ esac
 if [[ -d "$source_git_hooks_dir" ]]; then
     cp -R "$source_git_hooks_dir/" "$target_git_hooks_dir/"
     echo "Copied hooks and git-deck to $target_git_hooks_dir"
+    git config alias.deck '!bash .git/hooks/git-deck/deck'
+    echo "git-deck command was registered."
 else
     echo "Error: hooks and git-deck not found at $source_git_hooks_dir"
     exit 1
