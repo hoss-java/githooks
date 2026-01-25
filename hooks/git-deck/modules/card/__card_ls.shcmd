@@ -69,6 +69,12 @@ __card_ls() {
 
                 if [ "$option_output" == 'short' ]; then
                     echo "$card_name"
+                elif [ "$option_output" == 'commitid' ]; then
+                    local card_id=$((10#$card_name))
+                    local board_id=$((10#$DEFAULT_BOARD))
+                    echo "'[B$(printf "%03d" "$board_id")-C$(printf "%04d" "$card_id")]'"
+                elif [ "$option_output" == 'titleonly' ]; then
+                    echo "$card_title"
                 elif [ "$option_output" == 'notitle' ]; then
                     echo_colored "${column_color},-" "$DEFAULT_BOARD_NAME/$card_colunm/$card_name"
                 else

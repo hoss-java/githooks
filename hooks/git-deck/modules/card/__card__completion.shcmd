@@ -41,7 +41,7 @@ __card__completion(){
             # If we successfully obtained the git root, proceed
             local card_options=""
             if [ "$prev_word" == "--output" ] || [ "$prev_word" == "-o" ];then
-                card_options=("full" "short" "notitle")
+                card_options=("full" "short" "notitle" "titleonly" "commitmsg")
             elif [ "$prev_word" == "--match" ] || [ "$prev_word" == "-m" ];then
                 card_options=("partial")
             fi            
@@ -60,7 +60,7 @@ __card__completion(){
             # If we successfully obtained the git root, proceed
             local column_card_options=""
             if [ "$prev_word" == "--output" ] || [ "$prev_word" == "-o" ];then
-                column_card_options=("full" "short" "notitle")
+                column_card_options=("full" "short" "notitle" "titleonly" "commitmsg")
             elif [ "$prev_word" == "--column" ] || [ "$prev_word" == "-c" ];then
                 column_card_options=$(git deck column ls --output name)
             fi            

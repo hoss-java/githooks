@@ -30,5 +30,26 @@ _git_deck_completion() {
     fi
 }
 
+_git_commit_completion() {
+    local current_word prev_word command_name
+    current_word="${COMP_WORDS[COMP_CWORD]}"
+    prev_word="${COMP_WORDS[COMP_CWORD-1]}"
+    command_name="${COMP_WORDS[1]}"
+
+    # Check if the first command is 'deck' and the second command is 'pm'
+    if [[ "$COMP_CWORD" -eq 3 ]]; then
+        if [[ "$command_name" == "commit" && "${COMP_WORDS[2]}" == "-m" ]]; then
+            COMPREPLY=($(compgen -W "$(git deck card ls --output commitid)" -- "$current_word"))
+            return
+        fi
+    elif [[ "$COMP_CWORD" -gt 3 ]]; then
+            local title_word_array="$(git deck card ls --output titleonly)"
+            unique_array=($(printf "%s\n" "${title_word_array[@]}" | tr '[:upper:]' '[:lower:]' | sort -u))
+            COMPREPLY=($(compgen -W "${unique_array[*]}" -- "$current_word"))
+            return
+    fi
+}
+
 # Register the completion function specifically for git deck
 complete -F _git_deck_completion git deck
+complete -F _git_commit_completion git commit
