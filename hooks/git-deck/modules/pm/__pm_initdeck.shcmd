@@ -1,6 +1,6 @@
 # Initialize deck for a git folder
 __pm_initdeck() {
-    return_value=1
+    local return_value=1
     if [ -d "$DECK_DIR" ]; then
         echo "Deck is already initialized at $DECK_DIR."
     else

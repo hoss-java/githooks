@@ -18,7 +18,7 @@ board() {
         return $?
     else
         # Generate usage string based on available commands
-        local usage="Usage: git deck ${FUNCNAME[0]} {$(IFS='|'; echo "${!func_subcommands[*]}")}"        
+        local usage="Usage: git deck ${FUNCNAME[0]} {$(IFS='|'; echo "${!func_subcommands[*]}")}"
         echo "Invalid ${FUNCNAME[0]} command. $usage"
         return 1
     fi

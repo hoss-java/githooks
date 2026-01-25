@@ -1,9 +1,10 @@
 # Initialize for for a git folder
 __pm_init() {
-    return_value=1
+    local return_value=1
+    local pm_file="$PM_DIR/pm.md"
 
     # Default values for options
-    option_template='default'
+    local option_template='default'
      # Parse options using getopts
     # Call the function and evaluate the output
     local output=$(parse_options "template" "t" "$@")
@@ -18,13 +19,13 @@ __pm_init() {
         return 1
     fi
 
-    if [ -d "$PM_DIR" ] && [ -f "$PM_DIR/pm.md" ] ; then
+    if [ -d "$PM_DIR" ] && [ -f "$pm_file" ] ; then
         echo "PM is already initialized at $PM_DIR."
     else
         [ ! -d "$PM_DIR" ] && \
             mkdir -p "$PM_DIR"
 
-        cp "$TEMPLATES_DIR/pm/$option_template" "$PM_DIR/pm.md"
+        cp "$TEMPLATES_DIR/pm/$option_template" "$pm_file"
         return_value=$?
         echo "Initialized PM at $PM_DIR."
     fi

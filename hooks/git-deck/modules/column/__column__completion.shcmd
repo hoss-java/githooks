@@ -1,0 +1,91 @@
+__column__completion(){
+    local _COMP_CWORD="$1"
+    local _COMP_WORDS=("${@:2}")
+    local current_word prev_word command_name
+    current_word="${_COMP_WORDS[_COMP_CWORD]}"
+    prev_word="${_COMP_WORDS[_COMP_CWORD-1]}"
+    command_name="${_COMP_WORDS[1]}"
+
+    # Create a copy of the array removing items that start with '_'
+    if [[ "$_COMP_CWORD" -eq 3 ]]; then
+        # Define second-level commands for "git deck board"
+        local filtered_commands=($(printf "%s\n" "${!func_subcommands[@]}" | grep -v '^_'))
+        echo "${filtered_commands[*]}"
+        return
+    fi
+
+    # Get the Git root directory
+    local git_root
+    git_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "ls" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 4) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_options=("--output" "-o")
+            echo "${column_options[@]}"
+        elif [[ ("$_COMP_CWORD" -eq 5) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_options=""
+            column_options=("full" "id" "name")
+            echo "${column_options[@]}"
+        fi
+        return
+    fi
+
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "set" ]]; then
+        if [[ -d "${git_root}/.pm/deck" ]]; then
+            # List existing board directories in .pm/deck
+            local column_s
+            columns=$(git deck column ls --output name)
+            echo "${columns}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "rm" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 4) ]]; then
+            if [[ -d "${git_root}/.pm/deck" ]]; then
+                # List existing board directories in .pm/deck
+                local column_s
+                columns=$(git deck column ls --output name)
+                echo "${columns}"
+            fi
+        elif [[ ("$_COMP_CWORD" -eq 5) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_options=("--remove" "-r")
+            echo "${column_options[*]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) ]]; then
+            local column_option_params=("permanent" )
+            echo "${column_option_params[*]}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "status" ]]; then
+       if [[ "$_COMP_CWORD" -eq 4 ]]; then
+            if [[ -d "${git_root}/.pm/deck" ]]; then
+                # List existing board directories in .pm/deck
+                columns="$(git deck column ls --output name)"
+                echo "${columns}"
+            fi
+        elif [[ ("$_COMP_CWORD" -eq 5) || ("$_COMP_CWORD" -eq 7) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_options=("--status-text" "--status-details" )
+            echo "${column_options[@]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) || ("$_COMP_CWORD" -eq 8) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_option_params=""
+            if [ "$prev_word" == "--status-text" ] ;then
+                column_option_params="$(git deck column ls --output name)"
+            elif [ "$prev_word" == "--status-details" ];then
+                column_option_params=("open")
+            fi            
+            echo "${column_option_params[@]}"
+        fi
+        return
+    fi
+}
