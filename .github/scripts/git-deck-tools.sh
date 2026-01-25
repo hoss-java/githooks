@@ -78,11 +78,11 @@ extract_md_headers() {
 }
 # Wrapper function that passes all parameters to the main function
 extract_status_headers() {
-    extract_card_headers "$@"  # Pass all parameters to the main function
+    extract_md_headers "$@"  # Pass all parameters to the main function
 }
 
 # Function to extract git-deck cards' body
-extract_card_body() {
+extract_md_body() {
     local file="$1"
     # Get the content after the second ---
     content=$(awk '
@@ -128,7 +128,7 @@ generate_markdown() {
             # Loop through each card file in the column
             for card in "$column"/*; do
                 if [[ $(basename "$card") =~ ^[0-9]{1,4}$ ]]; then
-                    card_headers=$(extract_card_headers "$card")
+                    card_headers=$(extract_md_headers "$card")
                     eval "$card_headers"  # Evaluate to create the associative array
 
                     # Get the title from headers, default to "Untitled" if not found
@@ -138,7 +138,7 @@ generate_markdown() {
                     card_content=""
                     if [[ -n "$card_headers" ]]; then
                         # Get the content after the second ---
-                        card_content=$(extract_card_body "$card")
+                        card_content=$(extract_md_body "$card")
                     fi
 
                     # Read the status file for statustext and statusdetails
