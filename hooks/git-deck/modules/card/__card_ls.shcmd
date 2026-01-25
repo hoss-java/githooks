@@ -31,8 +31,18 @@ __card_ls() {
             local card_name=$(basename "$card")
             local card_path=$(dirname "$card")
             local card_colunm=$(basename "$(dirname "$card")")
+
+            # Read the config file for color and other settings
+            local column_config_file="$DECK_DIR/$DEFAULT_BOARD_NAME/$card_colunm/.config"
+            if [[ -f "$column_config_file" ]]; then
+                column_config_headers=$(extract_md_headers "$column_config_file")
+                eval "$column_config_headers"  # Evaluate to create associative array
+                # Extract values for statustext and statusdetails
+                column_color="${headers[color]:-}"
+            fi
+
             if [[ "$card_name" =~ ^[0-9]{1,4}$ ]]; then
-                eval "$(extract_card_headers "$card")"
+                eval "$(extract_md_headers "$card")"
                 # Access the headers with the returned associative array
                 local card_title=''
                 if [ ${#headers[@]} -eq 0 ]; then
@@ -60,9 +70,9 @@ __card_ls() {
                 if [ "$option_output" == 'short' ]; then
                     echo "$card_name"
                 elif [ "$option_output" == 'notitle' ]; then
-                    echo "$DEFAULT_BOARD_NAME/$card_colunm/$card_name"
+                    echo_colored "${column_color},-" "$DEFAULT_BOARD_NAME/$card_colunm/$card_name"
                 else
-                    echo " $DEFAULT_BOARD_NAME/$card_colunm/$card_name - $card_title $selected_text"
+                    echo_colored "${column_color},-" " $DEFAULT_BOARD_NAME/$card_colunm/$card_name - $card_title $selected_text"
                 fi
                 return_value=0
             fi

@@ -43,7 +43,7 @@ __card_find() {
             local card_path=$(dirname "$card")
             local card_colunm=$(basename "$(dirname "$card")")
             if [[ "$card_name" =~ ^[0-9]{1,4}$ ]]; then
-                eval "$(extract_card_headers "$card")"
+                eval "$(extract_md_headers "$card")"
                 # Initialize a flag to determine if all headers are matched
                 local all_matched=false
 

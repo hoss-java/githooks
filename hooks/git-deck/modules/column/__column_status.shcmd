@@ -34,7 +34,7 @@ __column_status() {
     local column_dir="$DECK_DIR/$DEFAULT_BOARD_NAME/$column_name"
 
     # Check if the column directory exists
-    local column_status="$column_dir/.status"
+    local column_status="$column_dir/.config"
     if [ -d "$column_dir" ]; then
         [ -f "$column_dir/.id" ] &&\
             column_id=$(cat "$column_dir/.id")

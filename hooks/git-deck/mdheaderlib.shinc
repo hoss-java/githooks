@@ -1,9 +1,9 @@
 # exteract header from a card
-extract_card_headers() {
+extract_md_headers() {
     local file="$1"
     declare -A headers
 
-    # Extract the header into a variable
+    # Extract the header into a variable, ignoring comment lines
     header=$(awk '
         BEGIN { in_header=0 }
         /^---/ {
@@ -11,7 +11,7 @@ extract_card_headers() {
             if (in_header == 0) exit # Exit after the second ---
             next # Skip the --- lines
         }
-        in_header && length($0) > 0 { print }
+        in_header && length($0) > 0 && !/^[[:space:]]*#/ { print }
     ' "$file")
 
     # Process each line of the header
@@ -26,7 +26,7 @@ extract_card_headers() {
     done <<< "$header"
 
     # Return the associative array
-    echo "$(declare -p headers)"
+    declare -p headers
 }
 
 # Function to get card info

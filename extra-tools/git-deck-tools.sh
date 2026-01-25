@@ -139,10 +139,10 @@ generate_markdown() {
                     fi
 
                     # Read the status file for statustext and statusdetails
-                    status_file="$column/.status"
-                    if [[ -f "$status_file" ]]; then
-                        status_headers=$(extract_status_headers "$status_file")
-                        eval "$status_headers"  # Evaluate to create associative array
+                    config_file="$column/.config"
+                    if [[ -f "$config_file" ]]; then
+                        config_headers=$(extract_status_headers "$config_file")
+                        eval "$config_headers"  # Evaluate to create associative array
                         # Extract values for statustext and statusdetails
                         statustext="${headers[statustext]:-}"
                         statusdetails="${headers[statusdetails]:-}"
