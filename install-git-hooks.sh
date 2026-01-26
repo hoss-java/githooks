@@ -65,7 +65,7 @@ else
 fi
 
 # Add sourcing to .bashrc if not already present
-if ! grep -Fxq "source $target_user_home/git-deck-completion.sh" "$target_user_home/.bashrc"; then
+if ! grep -q "source .*/git-deck-completion.sh" "$target_user_home/.bashrc"; then
     echo "source $target_user_home/git-deck-completion.sh" >> "$target_user_home/.bashrc"
     echo "Added sourcing to .bashrc"
 else
@@ -73,7 +73,7 @@ else
 fi
 
 # Add sourcing to .bash_profile if not already present
-if ! grep -Fxq "source $target_user_home/git-deck-completion.sh" "$target_user_home/.bash_profile"; then
+if ! grep -q "source .*/git-deck-completion.sh" "$target_user_home/.bash_profile"; then
     echo "source $target_user_home/git-deck-completion.sh" >> "$target_user_home/.bash_profile"
     echo "Added sourcing to .bash_profile"
 else
