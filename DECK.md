@@ -141,6 +141,26 @@ gantt
 > > * A file named `git-deck-completion.sh` is copied to the HOME folder of the current user and then the file is sourced via `.bashrc` and `.bash_profile`
 > </details>
 
+## 001-0010
+> **Move main to develop branch** ![status](https://img.shields.io/badge/status-DONE-brightgreen)
+> <details >
+>     <summary>Details</summary>
+> The goal of this card is to change repo structure from main to develop/main.
+> 
+> # DOD (definition of done):
+> A test-system is impimented.
+> Actions are updated to support auto-merge.
+> 
+> # TODO:
+> - [x] 2. Develop a test system (an empty test system)
+> - [x] 3. update all git and github files
+> - [x] 4. Update auto merge and main marge lists
+> - [x] 5. Clean up main branch from manual merged commits
+> 
+> # Reports:
+> *
+> </details>
+
 ## 001-0007
 > **Improve installer to support add github action files.** ![status](https://img.shields.io/badge/status-NOT--STARTED-lightgrey)
 > <details >
@@ -244,26 +264,6 @@ gantt
 > - [x] 2. Update commit-msg-format.shinc and commit-msg to use commit-msg-directives.shinc
 > - [x] 3. Add this system to other hooks such as pre-commit
 > - [x] 4. Update other files/script if needed
-> 
-> # Reports:
-> *
-> </details>
-
-## 001-0010
-> **Move main to develop branch** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
-> <details open>
->     <summary>Details</summary>
-> The goal of this card is to change repo structure from main to develop/main.
-> 
-> # DOD (definition of done):
-> A test-system is impimented.
-> Actions are updated to support auto-merge.
-> 
-> # TODO:
-> - [ ] 2. Develop a test system (an empty test system)
-> - [ ] 3. update all git and github files
-> - [ ] 4. Update auto merge and main marge lists
-> - [ ] 5. Clean up main branch from manual merged commits
 > 
 > # Reports:
 > *
