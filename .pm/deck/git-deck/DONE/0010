@@ -18,10 +18,10 @@ A test-system is impimented.
 Actions are updated to support auto-merge.
 
 # TODO:
-- [ ] 2. Develop a test system (an empty test system)
-- [ ] 3. update all git and github files
-- [ ] 4. Update auto merge and main marge lists
-- [ ] 5. Clean up main branch from manual merged commits
+- [x] 2. Develop a test system (an empty test system)
+- [x] 3. update all git and github files
+- [x] 4. Update auto merge and main marge lists
+- [x] 5. Clean up main branch from manual merged commits
 
 # Reports:
 *
