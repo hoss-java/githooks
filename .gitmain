@@ -1,0 +1,5 @@
+# Push files/folders from develop to main.
+extra-tools/
+hooks/
+install-git-hooks.sh
+git_hub_spike.md
