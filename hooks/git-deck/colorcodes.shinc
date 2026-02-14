@@ -1,0 +1,84 @@
+# Define terminal color codes
+declare -A colors=(
+    [BLACK]='\033[30m'                 # Black
+    [RED]='\033[31m'                   # Red
+    [GREEN]='\033[32m'                 # Green
+    [YELLOW]='\033[33m'                # Yellow
+    [BLUE]='\033[34m'                  # Blue
+    [MAGENTA]='\033[35m'               # Magenta
+    [CYAN]='\033[36m'                  # Cyan
+    [WHITE]='\033[37m\033[1m'          # Bold White
+    [GRAY]='\033[38;5;240m'            # Gray
+    [DIM_GRAY]='\033[38;5;241m'        # Dim Gray
+    [LIGHT_GRAY]='\033[37m'            # Light Gray
+    [DARK_GRAY]='\033[1;30m'           # Dark Gray
+    [LIGHT_RED]='\033[38;5;196m'       # Light Red
+    [LIGHT_GREEN]='\033[38;5;46m'      # Light Green
+    [LIGHT_YELLOW]='\033[38;5;226m'    # Light Yellow
+    [LIGHT_BLUE]='\033[38;5;122m'      # Light Blue
+    [LIGHT_CYAN]='\033[38;5;51m'       # Light Cyan
+    [LIGHT_MAGENTA]='\033[38;5;201m'   # Light Magenta
+
+    [BGBLACK]='\033[40m'               # Background Black
+    [BGRED]='\033[41m'                 # Background Red
+    [BGGREEN]='\033[42m'               # Background Green
+    [BGYELLOW]='\033[43m'              # Background Yellow
+    [BGBLUE]='\033[44m'                # Background Blue
+    [BGCYAN]='\033[46m'                # Background Cyan
+    [BGMAGENTA]='\033[45m'             # Background Magenta
+    [BGWHITE]='\033[47m'               # Background White
+    [BGGRAY]='\033[48;5;240m'          # Background Gray
+    [BGDIM_GRAY]='\033[48;5;241m'      # Background Dim Gray
+    [BGLIGHT_GRAY]='\033[48;5;251m'    # Background Light Gray
+    [BGLIGHT_RED]='\033[48;5;196m'     # Background Light Red
+    [BGLIGHT_GREEN]='\033[48;5;46m'    # Background Light Green
+    [BGLIGHT_YELLOW]='\033[48;5;226m'  # Background Light Yellow
+    [BGLIGHT_BLUE]='\033[48;5;122m'    # Background Light Blue
+    [BGLIGHT_CYAN]='\033[48;5;51m'     # Background Light Cyan
+    [BGLIGHT_MAGENTA]='\033[48;5;201m' # Background Light Magenta
+)
+
+# No Color
+NC='\033[0m'
+
+# Function to validate color
+validate_color() {
+    local color="$1"
+    if [[ -n "$color" ]] && [[ -n "${colors[$color]}" ]]; then
+        return 0   # Valid color
+    else
+        return 1   # Invalid color
+    fi
+}
+
+# Function to echo colored text
+echo_colored() {
+    local color_param="$1"
+    local text="$2"
+
+    # Extract foreground and background colors, if provided
+    IFS=',' read -r fg_color bg_color <<< "$color_param"
+
+    # If only one color is provided, assume it is the foreground color
+    if [[ -z "$bg_color" ]]; then
+        bg_color=""
+    fi
+
+    local text_fg_color=''
+    validate_color "$fg_color"
+    [ $? -eq 0 ] && \
+        text_fg_color="${colors[$fg_color]}"
+    local text_bg_color=''
+    validate_color "$bg_color"
+    [ $? -eq 0 ] && \
+        text_bg_color="${colors[$bg_color]}"
+
+    # Construct the escape sequence
+    local color_code="${text_fg_color}${text_bg_color}"
+    local nc_code="${NC}"
+    [ -z "$var" ] && \
+        nc_code=""
+
+    # Echo the colored text
+    echo -e "${color_code}${text}${nc_code}"
+}

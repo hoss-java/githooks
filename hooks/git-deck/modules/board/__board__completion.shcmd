@@ -1,0 +1,72 @@
+__board__completion(){
+    local _COMP_CWORD="$1"
+    local _COMP_WORDS=("${@:2}")
+    local current_word prev_word command_name
+    current_word="${_COMP_WORDS[_COMP_CWORD]}"
+    prev_word="${_COMP_WORDS[_COMP_CWORD-1]}"
+    command_name="${_COMP_WORDS[1]}"
+
+    if [[ "$_COMP_CWORD" -eq 3 ]]; then
+        # Define second-level commands for "git deck board"
+        local filtered_commands=($(printf "%s\n" "${!func_subcommands[@]}" | grep -v '^_'))
+        echo "${filtered_commands[*]}"
+        return
+    fi
+
+    # Get the Git root directory
+    local git_root
+    git_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "mk" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 5) ]]; then
+            # If we successfully obtained the git root, proceed
+            local board_options=("--template" "-t")
+            echo "${board_options[@]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) ]]; then
+            # If we successfully obtained the git root, proceed
+            if [[ -d "${git_root}/.pm/deck" ]]; then
+                # List existing board directories in .pm/deck
+                local templates=$(git deck board ls --output name --type template)  # Exclude any .id files
+                echo "${templates}"
+            fi
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "rm" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 4) ]]; then
+            # If we successfully obtained the git root, proceed
+            if [[ -d "${git_root}/.pm/deck" ]]; then
+                # List existing board directories in .pm/deck
+                local boards
+                boards=$(git deck board ls --output name)  # Exclude any .id files
+                echo "${boards}"
+            fi
+        elif [[ ("$_COMP_CWORD" -eq 5) ]]; then
+            # If we successfully obtained the git root, proceed
+            local board_options=("--remove" "-r")
+            echo "${board_options[*]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) ]]; then
+            # If we successfully obtained the git root, proceed
+            local board_option_params=("permanent" )
+            echo "${board_option_params[*]}"
+        fi
+
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "set" ]]; then
+        # If we successfully obtained the git root, proceed
+        if [[ -d "${git_root}/.pm/deck" ]]; then
+            # List existing board directories in .pm/deck
+            local boards
+            boards=$(git deck board ls --output name)  # Exclude any .id files
+
+            echo "${boards}"
+        fi
+        return
+    fi
+}

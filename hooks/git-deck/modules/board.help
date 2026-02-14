@@ -1,0 +1,53 @@
+# Git-Deck Board Management Commands Usage
+
+The following commands are available for managing boards:
+
+1. **help**
+   - Displays this help information.
+   - Usage: 
+     ```
+     git deck board help
+     ```
+
+2. **ls**
+   - Lists all boards and their IDs in the deck.
+   - Options:
+     - `-o <output_format>`: Specify output format (full, id, name).
+     - `-t <type>`: Specify type (board, template).
+   - Usage:
+     ```
+     git deck board ls [-o <output_format>] [-t <type>]
+     ```
+
+3. **mk**
+   - Creates a new board with a unique ID.
+   - Options:
+     - `-t <template>`: Specify a template for the new board (default is 'default').
+   - Usage:
+     ```
+     git deck board mk <board_name> [-t <template>]
+     ```
+
+4. **set**
+   - Sets a specified board as the active/default board.
+   - Usage:
+     ```
+     git deck board set <board_name>
+     ```
+
+5. **rm**
+   - Removes a specified board.
+   - Options:
+     - `-r <remove_type>`: Specify type of removal ('bin' (default) or 'permanent').
+   - Usage:
+     ```
+     git deck board rm <board_name> [-r <remove_type>]
+     ```
+
+6. **cleanup**
+   - Cleans up the boards' bin directory.
+   - Usage:
+     ```
+     git deck board cleanup
+     ```
+

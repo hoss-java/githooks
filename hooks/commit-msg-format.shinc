@@ -1,0 +1,34 @@
+#
+# File name : commit-msg-format.shinc
+# Used by commit-msg
+#
+# Description :
+# -----------------------------------------------------
+# Check commit message sent by git to be sure the messages
+#    contains deck card info
+#
+# The script is developed to run from commit-msg as a git hook.
+#
+# Local variables:
+#  messagePattern
+#  messagePatternErrMsg
+#
+#  commit_msg_line1
+#  commit_msg_extralines
+#  commit_msg_line_count
+#
+#  deckLinkFlag
+#  gerritChangeIdFlag
+#  commitCheckFlag
+#
+# 2025 hossjava@osxx.com
+
+# Check commit message pattern
+if [ "$deckLinkFlag" = true ]; then
+    case "$commit_msg_line1" in
+        $messagePattern) ;;
+        *)
+            echo "$messagePatternErrMsg"
+            exit 1;;
+    esac
+fi

@@ -1,0 +1,75 @@
+# Git-Deck Card Management Commands Usage
+===============================
+
+The following commands are available for managing cards within a selected column:
+
+1. **help**
+   - Displays this help information.
+   - Usage: 
+     ```
+     git deck card help
+     ```
+
+2. **ls**
+   - Lists all cards in the active/default column.
+   - Usage:
+     ```
+     git deck card ls [-o <output_format>] [-c <column_name>]
+     ```
+
+3. **find**
+   - Searches for cards on the current default board using a specified search string.
+   - Usage:
+     ```
+     git deck card find <search_string> [-o <output_format>] [-m <match_type>]
+     ```
+
+4. **mk**
+   - Creates a new card in the active/default column.
+   - Usage:
+     ```
+     git deck card mk <card_title>
+     ```
+
+5. **edit**
+   - Edits an existing card from the current default board.
+   - Usage:
+     ```
+     git deck card edit <card_id>
+     ```
+
+6. **cat**
+   - Displays the content of a specified card.
+   - Usage:
+     ```
+     git deck card cat <card_id>
+     ```
+
+7. **set**
+   - Sets a specified card as the default active card for its column and board.
+   - Usage:
+     ```
+     git deck card set <card_id>
+     ```
+
+8. **mv**
+   - Moves a specified card to a different column on the current default board.
+   - Usage:
+     ```
+     git deck card mv <card_id> <new_column_name>
+     ```
+
+9. **rm**
+   - Removes a specified card from the current default board.
+   - Usage:
+     ```
+     git deck card rm <card_id> [-r <remove_type>]
+     ```
+
+10. **cleanup**
+    - Cleans up the cards/columns bin directory.
+    - Usage:
+     ```
+     git deck card cleanup
+     ```
+

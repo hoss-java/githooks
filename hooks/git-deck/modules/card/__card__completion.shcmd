@@ -1,0 +1,106 @@
+__card__completion(){
+    local _COMP_CWORD="$1"
+    local _COMP_WORDS=("${@:2}")
+    local current_word prev_word command_name
+    current_word="${_COMP_WORDS[_COMP_CWORD]}"
+    prev_word="${_COMP_WORDS[_COMP_CWORD-1]}"
+    command_name="${_COMP_WORDS[1]}"
+
+    # Create a copy of the array removing items that start with '_'
+    if [[ "$_COMP_CWORD" -eq 3 ]]; then
+        # Define second-level commands for "git deck board"
+        local filtered_commands=($(printf "%s\n" "${!func_subcommands[@]}" | grep -v '^_'))
+        echo "${filtered_commands[*]}"
+        return
+    fi
+
+    # Get the Git root directory
+    local git_root
+    git_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "edit"  || "${_COMP_WORDS[3]}" == "cat" || \
+        "${_COMP_WORDS[3]}" == "set" ]]; then
+        # If we successfully obtained the git root, proceed
+        if [[ -d "${git_root}/.pm/deck" ]]; then
+            # List existing cars directories in .pm/deck
+            local cards
+            cards=$(git deck card ls --output short)
+            echo "${cards}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "find" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 5) || ("$_COMP_CWORD" -eq 7) ]]; then
+            # If we successfully obtained the git root, proceed
+            local card_options=("--output" "-o" "--match" "-m")
+            echo "${card_options[@]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) || ("$_COMP_CWORD" -eq 8) ]]; then
+            # If we successfully obtained the git root, proceed
+            local card_options=""
+            if [ "$prev_word" == "--output" ] || [ "$prev_word" == "-o" ];then
+                card_options=("full" "short" "notitle" "titleonly" "commitmsg")
+            elif [ "$prev_word" == "--match" ] || [ "$prev_word" == "-m" ];then
+                card_options=("partial")
+            fi            
+            echo "${card_options[@]}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "ls" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 4) || ("$_COMP_CWORD" -eq 6) ]]; then
+            # If we successfully obtained the git root, proceed
+            local card_options=("--output" "-o" "--column" "-c")
+            echo "${card_options[@]}"
+        elif [[ ("$_COMP_CWORD" -eq 5) || ("$_COMP_CWORD" -eq 7) ]]; then
+            # If we successfully obtained the git root, proceed
+            local column_card_options=""
+            if [ "$prev_word" == "--output" ] || [ "$prev_word" == "-o" ];then
+                column_card_options=("full" "short" "notitle" "titleonly" "commitmsg")
+            elif [ "$prev_word" == "--column" ] || [ "$prev_word" == "-c" ];then
+                column_card_options=$(git deck column ls --output name)
+            fi            
+            echo "${column_card_options[@]}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "rm" ]]; then
+        if [[ ("$_COMP_CWORD" -eq 4) ]]; then
+            if [[ -d "${git_root}/.pm/deck" ]]; then
+                local cards
+                cards=$(git deck card ls --output short)
+                echo "${cards}"
+            fi
+        elif [[ ("$_COMP_CWORD" -eq 5) ]]; then
+            local card_options=("--remove" "-r")
+            echo "${card_options[*]}"
+        elif [[ ("$_COMP_CWORD" -eq 6) ]]; then
+            local card_option_params=("permanent" )
+            echo "${card_option_params[*]}"
+        fi
+        return
+    fi
+
+    # Autocompletion for 'set' command
+    if [[ "${_COMP_WORDS[3]}" == "mv" ]]; then
+        if [[ -d "${git_root}/.pm/deck" ]]; then
+            if [[ "$_COMP_CWORD" -eq 4 ]]; then
+                local cards
+                cards=$(git deck card ls --output short)
+                echo "${cards}"
+            elif [[ "$_COMP_CWORD" -eq 5 ]]; then
+                local columns
+                columns=$(git deck column ls --output name)
+                echo "${columns}"
+            fi
+        fi
+        return
+    fi
+
+}
