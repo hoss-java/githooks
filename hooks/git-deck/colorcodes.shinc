@@ -76,8 +76,6 @@ echo_colored() {
     # Construct the escape sequence
     local color_code="${text_fg_color}${text_bg_color}"
     local nc_code="${NC}"
-    [ -z "$var" ] && \
-        nc_code=""
 
     # Echo the colored text
     echo -e "${color_code}${text}${nc_code}"
